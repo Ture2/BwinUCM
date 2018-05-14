@@ -9,6 +9,12 @@ public class TAOCompeticion {
 	private String tipo;
 	
 	public TAOCompeticion(String equipos, String Fechaini, String Fechafin, int cuota, String idCompeticion, String tipo) {
+		this.equipos = equipos;
+		this.fechaIni = Fechaini;
+		this.fechaFin = Fechafin;
+		this.cuota = cuota;
+		this.idCompeticion = idCompeticion;
+		this.tipo = tipo;
 		
 	}
 	

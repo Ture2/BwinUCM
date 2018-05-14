@@ -3,8 +3,6 @@ package dao;
 import tao.TAOUsuario;
 
 public interface DAOUsuario {
-	public TAOUsuario Usuario=null; // No se si es correcto
-	
 	
 	public void CrearUsuario(TAOUsuario Usuario);
 	public void BorrarUsuario(TAOUsuario Usuario);

@@ -11,7 +11,10 @@ public class TAOApuesta {
 	private String idApuesta;
 	
 	public TAOApuesta(int cantidadApuesta, FactoriaApuesta tipo,Usuario user, String idApuesta) {
-		
+		this.CantidadApuesta = cantidadApuesta;
+		this.tipo = tipo;
+		this.usuario = user;
+		this.idApuesta = idApuesta;
 	}
 	
 	public int getCantidadApuesta() {

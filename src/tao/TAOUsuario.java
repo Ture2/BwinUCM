@@ -10,7 +10,11 @@ public class TAOUsuario {
 	private boolean validacion;
 	
 	public TAOUsuario(String id,String nombre, String pass, int dinero,String correo) {
-		
+		this.IdUser = id;
+		this.Nombre = nombre;
+		this.Pass = pass;
+		this.BwinCoins = dinero;
+		this.CorreoUCM = correo;
 	}
 	
 	public String GetIdUser() {
