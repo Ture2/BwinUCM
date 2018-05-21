@@ -9,6 +9,7 @@ public class TAOUsuario {
 	private int BwinCoins;
 	private boolean validacion;
 	
+	public TAOUsuario(){}
 	public TAOUsuario(String id,String nombre, String pass, int dinero,String correo) {
 		this.IdUser = id;
 		this.Nombre = nombre;
@@ -29,32 +30,39 @@ public class TAOUsuario {
 		return Nombre;
 	}
 	
-	public String SetNombre(String nombre) {
-		return this.Nombre = nombre;
+	public int getDinero(){
+		return this.BwinCoins;
+	}
+	
+	public void setDinero(int bwinsCoins){
+		this.BwinCoins = bwinsCoins;
+	}
+	public void SetNombre(String nombre) {
+		 this.Nombre = nombre;
 	}
 	
 	public String GetPass() {
 		return Pass;
 	}
 	
-	public String SetPass(String contraseña) {
-		return this.Pass = contraseña;
+	public void SetPass(String contrasena) {
+		this.Pass = contrasena;
 	}
 	
 	public String GetCorreo() {
 		return CorreoUCM;
 	}
 	
-	public String SetCorreo(String mail) {
-		return this.CorreoUCM = mail;
+	public void SetCorreo(String mail) {
+		this.CorreoUCM = mail;
 	}
 	
 	public boolean GetValidacion() {
 		return validacion;
 	}
 	
-	public boolean SetValidacion(boolean val) {
-		return this.validacion = val;
+	public void SetValidacion(boolean val) {
+		this.validacion = val;
 	}
 	
 }

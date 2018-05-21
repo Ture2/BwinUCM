@@ -1,42 +1,43 @@
 package dao;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import bbdd.BBDD;
 import tao.TAOApuesta;
 
 public class DAOApostarImp implements DAOApostar {
-	private BBDD bbdd;
-	public TAOApuesta Apuesta;
+	
+	
+	
+	public DAOApostarImp() throws IOException{
+		
+	}
 	
 	@Override
-	public void CrearApuesta(TAOApuesta apuesta) {
-		// TODO Auto-generated method stub
+	public void CrearApuesta(TAOApuesta apuesta) throws IOException {
 		
 	}
 
 	@Override
 	public void BorrarApuesta(TAOApuesta apuesta) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void ModificarApuesta(TAOApuesta apuesta) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
-	public void LeerApuesta(TAOApuesta apuesta) {
-		// TODO Auto-generated method stub
+	public TAOApuesta LeerApuesta(TAOApuesta apuesta) throws IOException{
 		
 	}
-
-	@Override
-	public void CrearTAO() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 
 }

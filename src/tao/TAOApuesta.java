@@ -17,6 +17,10 @@ public class TAOApuesta {
 		this.idApuesta = idApuesta;
 	}
 	
+	public TAOApuesta(String idApuesta, String tipo, String usuario,int cantidad) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCantidadApuesta() {
 		return this.CantidadApuesta;
 	}
