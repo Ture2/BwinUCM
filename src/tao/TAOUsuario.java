@@ -18,6 +18,9 @@ public class TAOUsuario {
 		this.CorreoUCM = correo;
 	}
 	
+	public TAOUsuario(String nick_usuario) {
+		this.IdUser = nick_usuario;
+	}
 	public String GetIdUser() {
 		return this.IdUser;
 	}

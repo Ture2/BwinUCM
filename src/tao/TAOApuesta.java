@@ -4,23 +4,47 @@ import actores.Usuario;
 import apuestas.FactoriaApuesta;
 
 public class TAOApuesta {
-	
-	private int CantidadApuesta;
-	private FactoriaApuesta tipo;
-	private Usuario usuario;
+	//Atributos genericos
+	private String ArrayCuotas;
+	private String usuario;
 	private String idApuesta;
+	private int CuotaApuesta;
+	private int CantidadApuesta;
 	
-	public TAOApuesta(int cantidadApuesta, FactoriaApuesta tipo,Usuario user, String idApuesta) {
-		this.CantidadApuesta = cantidadApuesta;
-		this.tipo = tipo;
-		this.usuario = user;
-		this.idApuesta = idApuesta;
+	//Atributos GEP
+	private int CuotaGanaA;
+	private int CuotaGanaB;
+	private int CuotaEmpate;
+	
+	//Atributos Alternative
+	
+	//Atributos Torneo
+	
+	private String PrimeraPos;
+	private String SegundaPos;
+	private String TerceraPos;
+	
+	//TaoApuestaGenerico
+	public TAOApuesta(String idApuesta, String tipo, String usuario,int cantidad) {
+		
 	}
 	
-	public TAOApuesta(String idApuesta, String tipo, String usuario,int cantidad) {
-		// TODO Auto-generated constructor stub
+	//TaoApuestaGEP
+	public TAOApuesta(String idApuesta, String usuario,int cantidad),{
+		
 	}
 
+	
+	//TaoApuestaAlternative
+	
+	
+	//TaoApuestaToreno
+	public TAOApuesta(String idApuesta, String usuario,
+			int cantidad, String PrimeraPos, String SegundaPos, String TerceraPos){
+		
+	}
+	
+	
 	public int getCantidadApuesta() {
 		return this.CantidadApuesta;
 	}

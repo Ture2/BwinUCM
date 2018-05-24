@@ -19,11 +19,12 @@ public class GUIFacadeSistema {
 		this.sAUsuario.CrearUsuario(nombre, pass, correo);
 	}
 	
+	
 	public void BorrarUsuario(String nombre,String pass, String correo) {
 		this.sAUsuario.BorrarUsuario(nombre, pass, correo);
 	}
 
-	public void Login(String nombre, String pass) {
+	public void Login(String nombre, String pass) {		
 		this.sAUsuario.Login(nombre, pass);
 	}
 	

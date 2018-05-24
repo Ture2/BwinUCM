@@ -17,16 +17,12 @@ import tao.TAOUsuario;
 
 public class DAOApostarImp implements DAOApostar {
 	
-	
-	
-	
-	
 	public DAOApostarImp(){}
 	
 	
 	public void CrearApuesta(TAOApuesta apuesta) throws IOException {
 		if(this.LeerApuesta(apuesta) == null){
-			FileWriter fw = new FileWriter("Usuarios.txt", true);
+			FileWriter fw = new FileWriter("Apuestas.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			String linea = apuesta.getCantidadApuesta() + " " + apuesta.getTipo() + " " + apuesta.getUsuario() + " " + 
 					apuesta.getIdApuesta();
@@ -39,11 +35,11 @@ public class DAOApostarImp implements DAOApostar {
 
 	public void BorrarApuesta(TAOApuesta apuesta) throws IOException {
 		String line;
-		File fich = new File("Apuesta.txt");
+		File fich = new File("Apuestas.txt");
 		FileReader fr = new FileReader(fich);
 		BufferedReader br = new BufferedReader(fr);
 		
-		File fichTemp = new File("ApuestaTmp.txt");
+		File fichTemp = new File("ApuestasTmp.txt");
 		FileWriter fw = new FileWriter(fichTemp, true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		
@@ -65,11 +61,11 @@ public class DAOApostarImp implements DAOApostar {
 
 	public void ModificarApuesta(TAOApuesta apuesta) throws IOException {
 		String line;
-		File fich = new File("Apuesta.txt");
+		File fich = new File("Apuestas.txt");
 		FileReader fr = new FileReader(fich);
 		BufferedReader br = new BufferedReader(fr);
 		
-		File fichTemp = new File("ApuestaTmp.txt");
+		File fichTemp = new File("ApuestasTmp.txt");
 		FileWriter fw = new FileWriter(fichTemp, true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		
@@ -97,7 +93,7 @@ public class DAOApostarImp implements DAOApostar {
 	public TAOApuesta LeerApuesta(TAOApuesta apuesta) throws IOException{
 		Boolean find = false;
 		TAOApuesta tao = null;
-		File fich = new File("Apuesta.txt");
+		File fich = new File("Apuestas.txt");
 		FileReader fr = new FileReader(fich);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
@@ -110,7 +106,21 @@ public class DAOApostarImp implements DAOApostar {
 		}
 		br.close();
 		return tao;
-		
+	}
+	
+	public TAOApuesta LeerUltimaApuesta() throws IOException{
+		//Por defecto el id sera 1000
+		TAOApuesta tao = new TAOApuesta("1000");
+		File fich = new File("Apuestas.txt");
+		FileReader fr = new FileReader(fich);
+		BufferedReader br = new BufferedReader(fr);
+		String line = br.readLine();
+		while(line != null){
+			String[] palabra = line.split(" ");
+			tao.setIdApuesta(palabra[0]);
+		}
+		br.close();
+		return tao;
 	}
 
 }

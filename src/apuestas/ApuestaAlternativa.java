@@ -1,7 +1,14 @@
 package apuestas;
 
-public class ApuestaAlternativa extends FactoriaApuesta{
+import actores.Usuario;
 
-	private String ArrayCuotas;
+public class ApuestaAlternativa extends Apuesta{
+
+	public boolean GenerateId(String id) {
+		return true;
+	}
+	
+	
+
 	
 }
