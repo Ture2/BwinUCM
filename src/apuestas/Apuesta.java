@@ -2,16 +2,15 @@ package apuestas;
 
 
 
-abstract class  Apuesta {
-	private String ArrayCuotas;
-	private String usuario;
-	private String idApuesta;
-	private int CuotaApuesta;
-	private int cantidadApuesta;
+public abstract class Apuesta {
+	protected String usuario;
+	protected String idApuesta;
+	protected int CuotaApuesta;
+	protected int cantidadApuesta;
 	
 	
 	protected String generateID(String id){
-		return ""
+		return "";
 	}
 	
 	public int getCantidadApuesta() {

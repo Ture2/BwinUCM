@@ -5,7 +5,6 @@ import apuestas.FactoriaApuesta;
 
 public class TAOApuesta {
 	//Atributos genericos
-	private String ArrayCuotas;
 	private String usuario;
 	private String idApuesta;
 	private int CuotaApuesta;
@@ -16,7 +15,11 @@ public class TAOApuesta {
 	private int CuotaGanaB;
 	private int CuotaEmpate;
 	
-	//Atributos Alternative
+	//Atributos GanaPorMas
+	
+	private int cuotaDosOMas;
+	private int cuotaTresOMas;
+	private int cuotaUnoMas;
 	
 	//Atributos Torneo
 	
@@ -30,20 +33,23 @@ public class TAOApuesta {
 	}
 	
 	//TaoApuestaGEP
-	public TAOApuesta(String idApuesta, String usuario,int cantidad),{
+	public TAOApuesta(String idApuesta, String usuario,int cantidad, int cuotaGanaA, int cuotaGanaB, int cuotaEmpate){
 		
 	}
 
 	
-	//TaoApuestaAlternative
+	//TaoApuestaGanaPorMas
 	
+	public TAOApuesta(String idApuesta, String tipo, String usuario,int cantidad, int cuotaDosOMas, int cuotaTresOMas,
+			int cuotaUnoMas) {
+		
+	}
 	
 	//TaoApuestaToreno
 	public TAOApuesta(String idApuesta, String usuario,
 			int cantidad, String PrimeraPos, String SegundaPos, String TerceraPos){
 		
 	}
-	
 	
 	public int getCantidadApuesta() {
 		return this.CantidadApuesta;
@@ -53,21 +59,12 @@ public class TAOApuesta {
 		return this.CantidadApuesta = cant;
 	}
 	
-	public Usuario getUsuario() {
+	public String getUsuario() {
 		return this.usuario;
 	}
 	
-	public Usuario setUsuario(Usuario user) {
+	public String setUsuario(String user) {
 		return this.usuario = user;
-	}
-	
-	public FactoriaApuesta getTipo() {
-		return this.tipo;
-		
-	}
-	
-	public FactoriaApuesta setTipo(FactoriaApuesta tipoApuesta) {
-		return this.tipo = tipoApuesta;
 	}
 	
 	public String getIdApuesta() {

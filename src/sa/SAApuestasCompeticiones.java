@@ -16,5 +16,5 @@ public interface SAApuestasCompeticiones {
 	public ArrayList<TAOCompeticion> VisualizarCompeticiones() throws IOException;
 	public void EliminarApuesta(String id_apuesta) throws IOException;
 	public void EliminarCompeticion(String id_competicion) throws IOException;
-	public void Apostar(int cant_BwinCoins, String nick_usuario, String id_competicion, String tipo_competicion) throws IOException, ApuestaDoesntExistException;
+	public void Apostar(int cant_BwinCoins, String nick_usuario, String id_competicion, String tipo_competicion, int cuota) throws IOException, ApuestaDoesntExistException;
 }

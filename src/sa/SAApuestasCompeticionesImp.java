@@ -32,7 +32,7 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 	}
 
 	@Override
-	public void Apostar(int cant_BwinCoins, String nick_usuario, String id_competicion, String tipo_competicion) throws IOException, ApuestaDoesntExistException{
+	public void Apostar(int cant_BwinCoins, String nick_usuario, String id_competicion, String tipo_competicion, int cuota) throws IOException, ApuestaDoesntExistException{
 		// Creamos una apuesta
 		Apuesta apuesta = this.CrearApuestaUsuario(tipo_competicion);
 		
@@ -42,7 +42,7 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 		
 		//Introducimos la competicion y el usuario
 		apuesta.setId(this.generateIDApuesta().getIdApuesta());
-		apuesta.setCuotaApuesta(tao.getCuotaGanaA());
+		apuesta.setCuotaApuesta(cuota);
 		apuesta.setCantidadApuesta(cant_BwinCoins);
 		apuesta.setUser(nick_usuario);
 		
