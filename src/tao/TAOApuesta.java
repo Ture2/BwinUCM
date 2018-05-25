@@ -9,6 +9,7 @@ public class TAOApuesta {
 	private String idApuesta;
 	private int CuotaApuesta;
 	private int CantidadApuesta;
+	private String tipo;
 	
 	//Atributos GEP
 	private int CuotaGanaA;
@@ -19,7 +20,8 @@ public class TAOApuesta {
 	
 	private int cuotaDosOMas;
 	private int cuotaTresOMas;
-	private int cuotaUnoMas;
+	private double cuotaUnoMas;
+	private int coutaCuatroExactos;
 	
 	//Atributos Torneo
 	
@@ -28,28 +30,51 @@ public class TAOApuesta {
 	private String TerceraPos;
 	
 	//TaoApuestaGenerico
-	public TAOApuesta(String idApuesta, String tipo, String usuario,int cantidad) {
-		
+	public TAOApuesta(String idApuesta, String usuario,int cantidad) {
 	}
 	
 	//TaoApuestaGEP
-	public TAOApuesta(String idApuesta, String usuario,int cantidad, int cuotaGanaA, int cuotaGanaB, int cuotaEmpate){
-		
+	public TAOApuesta(String idApuesta, String usuario,int cantidad, int cuotaApuesta, int cuotaGanaA, int cuotaGanaB, int cuotaEmpate){
+		this.tipo = "GEP";
+		this.usuario = "usuario";
+		this.CantidadApuesta = cantidad;
+		this.CuotaApuesta = cuotaApuesta;
+		this.CuotaGanaA = cuotaGanaA;
+		this.CuotaGanaB = cuotaGanaB;
+		this.CuotaEmpate = cuotaEmpate;
 	}
 
 	
 	//TaoApuestaGanaPorMas
 	
-	public TAOApuesta(String idApuesta, String tipo, String usuario,int cantidad, int cuotaDosOMas, int cuotaTresOMas,
-			int cuotaUnoMas) {
-		
+	public TAOApuesta(String idApuesta, String usuario, int cantidad, int cuotaApuesta) {
+		this.tipo = "WINFORMORE";
+		this.usuario = "usuario";
+		this.CantidadApuesta = cantidad;
+		this.CuotaApuesta = cuotaApuesta;
+		this.cuotaDosOMas = 3;
+		this.cuotaTresOMas = 4;
+		this.cuotaUnoMas = 1.5;
+		this.coutaCuatroExactos = 5;
 	}
 	
 	//TaoApuestaToreno
-	public TAOApuesta(String idApuesta, String usuario,
-			int cantidad, String PrimeraPos, String SegundaPos, String TerceraPos){
-		
+	public TAOApuesta(String idApuesta, String usuario, int cantidad, String[] pos){
+		this.tipo = "TORNEO";
+		this.usuario = usuario;
+		this.CantidadApuesta = cantidad;
+		this.CuotaApuesta = 4;
+		this.PrimeraPos = pos[0];
+		this.SegundaPos = pos[1];
+		this.TerceraPos = pos[2];
 	}
+	
+	//TaoApuestaId
+	
+	public TAOApuesta(String id_apuesta){
+		this.idApuesta = id_apuesta;
+	}
+	
 	
 	public int getCantidadApuesta() {
 		return this.CantidadApuesta;
@@ -75,4 +100,11 @@ public class TAOApuesta {
 		return this.idApuesta = id;
 	}
 
+	public String getTipo(){
+		return this.tipo;
+	}
+	
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}
 }

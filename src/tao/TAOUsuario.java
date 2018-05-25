@@ -8,6 +8,7 @@ public class TAOUsuario {
 	private String CorreoUCM;
 	private int BwinCoins;
 	private boolean validacion;
+	private boolean premium = false;
 	
 	public TAOUsuario(){}
 	public TAOUsuario(String id,String nombre, String pass, int dinero,String correo) {
@@ -68,4 +69,11 @@ public class TAOUsuario {
 		this.validacion = val;
 	}
 	
+	public boolean getPremium(){
+		return this.premium;
+	}
+	
+	public void setPremium(boolean p){
+		this.premium = p;
+	}
 }

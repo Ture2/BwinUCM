@@ -5,50 +5,52 @@ import sa.SAUsuarioImp;
 
 public class GUIFacadeSistema {
 	// creo que faltan atributos pero no sabia como ponerlos
-	private SAApuestasCompeticionesImp sApuestasCompeticiones;
-	private SAUsuarioImp sAUsuario;
-	
+	private ControladorPrincipal cp = null;
+	private String nombre;
+	private String nick;
+	private String pass;
+	private String correo;
+	private int bwinCoins;
 	
 	
 	public GUIFacadeSistema() {
-		this.sApuestasCompeticiones = new SAApuestasCompeticionesImp();
-		this.sAUsuario = new SAUsuarioImp();
+		this.cp =  new ControladorPrincipal();
 	}
 	
-	public void CrearUsuario(String nombre,String pass, String correo) {
-		this.sAUsuario.CrearUsuario(nombre, pass, correo);
+	public void accionCrearUsuario(String nombre,String pass, String correo) {
+		this.cp.CrearUsuario(this.nick, this.nombre, this.pass, this.correo);
 	}
 	
 	
-	public void BorrarUsuario(String nombre,String pass, String correo) {
+	public void accionBorrarUsuario(String nombre,String pass, String correo) {
 		this.sAUsuario.BorrarUsuario(nombre, pass, correo);
 	}
 
-	public void Login(String nombre, String pass) {		
+	public void accionLogin(String nombre, String pass) {		
 		this.sAUsuario.Login(nombre, pass);
 	}
 	
-	public void CerrarSesion(String nombre, String pass) {
+	public void accionCerrarSesion(String nombre, String pass) {
 		this.sAUsuario.CerrarSesion(nombre, pass);
 	}
 	
-	public void CambiarContrasena(String nombre, String pass, String correo) {
+	public void accionCambiarContrasena(String nombre, String pass, String correo) {
 		this.sAUsuario.CambiarContrasena(nombre, pass, correo);
 	}
 	
-	public void Apostar(int CantidadBwinCoins) {
+	public void accionApostar(int CantidadBwinCoins) {
 		
 	}
 	
-	public void AdministrarApuestas() {
+	public void accionAdministrarApuestas() {
 		
 	}
 	
-	public void VerCompeticiones() {
+	public void accionVerCompeticiones() {
 		
 	}
 	
-	public void Configuracion() {
+	public void accionConfiguracion() {
 		
 	}
 }

@@ -10,13 +10,16 @@ public class TAOCompeticion {
 	private int CuotaEmpate;
 	private String idCompeticion;
 	
-	public TAOCompeticion(String idCompeticion, String equipoA, String equipoB, String Fechaini, String Fechafin) {
+	public TAOCompeticion(String idCompeticion, String equipoA, String equipoB, String Fechaini, String Fechafin,
+			int cA, int cB, int cE) {
 		this.equipoA = equipoA;
 		this.equipoB = equipoB;
 		this.fechaIni = Fechaini;
 		this.fechaFin = Fechafin;
 		this.idCompeticion = idCompeticion;
-		
+		this.CuotaGanaA = cA;
+		this.CuotaGanaB = cB;
+		this.CuotaEmpate = cE;
 	}
 	
 	public void setCuotaGanaA(int a){

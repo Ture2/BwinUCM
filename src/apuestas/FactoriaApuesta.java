@@ -13,8 +13,8 @@ public class FactoriaApuesta implements IFactoriaApuesta{
 			return new Gep();
 		}else if(tipo.equalsIgnoreCase("TOURNAMENT")){
 			return new Torneo();
-		}else if(tipo.equalsIgnoreCase("ALTERNATIVE")){
-			return new ApuestaAlternativa();
+		}else if(tipo.equalsIgnoreCase("WINFORMORE")){
+			return new GanaPorMas();
 		}else throw new ApuestaDoesntExistException();
 	}
 	

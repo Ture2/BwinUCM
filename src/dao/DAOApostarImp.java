@@ -11,6 +11,7 @@ import java.io.IOException;
 import actores.Usuario;
 import apuestas.FactoriaApuesta;
 import bbdd.BBDD;
+import exceptions.ApuestaDoesntExistException;
 import exceptions.UsuarioExistException;
 import tao.TAOApuesta;
 import tao.TAOUsuario;
@@ -20,7 +21,7 @@ public class DAOApostarImp implements DAOApostar {
 	public DAOApostarImp(){}
 	
 	
-	public void CrearApuesta(TAOApuesta apuesta) throws IOException {
+	public void CrearApuesta(TAOApuesta apuesta) throws IOException, ApuestaDoesntExistException {
 		if(this.LeerApuesta(apuesta) == null){
 			FileWriter fw = new FileWriter("Apuestas.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -90,7 +91,7 @@ public class DAOApostarImp implements DAOApostar {
 	}
 
 	
-	public TAOApuesta LeerApuesta(TAOApuesta apuesta) throws IOException{
+	public TAOApuesta LeerApuesta(TAOApuesta apuesta) throws IOException, ApuestaDoesntExistException{
 		Boolean find = false;
 		TAOApuesta tao = null;
 		File fich = new File("Apuestas.txt");
@@ -100,8 +101,21 @@ public class DAOApostarImp implements DAOApostar {
 		while(!((line = br.readLine()) == null) && !find){
 			String[] palabra = line.split(" ");
 			if(palabra[0].equalsIgnoreCase(apuesta.getIdApuesta())){ 
-				tao = new TAOApuesta(palabra[0], palabra[1], palabra[2], Integer.parseInt(palabra[3]));
-				find = true;
+				if(palabra[1].equalsIgnoreCase("GEP")){
+					tao = new TAOApuesta(palabra[0], palabra[2], Integer.parseInt(palabra[3]),
+							Integer.parseInt(palabra[4]), Integer.parseInt(palabra[5]), Integer.parseInt(palabra[6]), Integer.parseInt(palabra[7]));
+					find = true;
+				}else if(palabra[1].equalsIgnoreCase("WINFORMORE")){
+					tao = new TAOApuesta(palabra[0], palabra[2], Integer.parseInt(palabra[3]), Integer.parseInt(palabra[4]));
+					find = true;
+				}else if(palabra[1].equalsIgnoreCase("TORNEO")){
+					String[] l = new String[3];
+					l[0] = palabra[4];
+					l[1] = palabra[5];
+					l[2] = palabra[6];
+					tao = new TAOApuesta(palabra[0], palabra[2], Integer.parseInt(palabra[3]), l);
+					find = true;
+				}else throw new ApuestaDoesntExistException();
 			}
 		}
 		br.close();

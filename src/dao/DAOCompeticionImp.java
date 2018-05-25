@@ -27,7 +27,8 @@ public class DAOCompeticionImp implements DAOCompeticion{
 			FileWriter fw = new FileWriter("Competiciones.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			String linea = competicion.getId() + " " + competicion.getEquipoA() + " " + competicion.getEquipoB() + " " + 
-					competicion.getFechaIni() + " " + competicion.getFechaFin() + " " + competicion.getCuota();
+					competicion.getFechaIni() + " " + competicion.getFechaFin() + " " + competicion.getCuotaGanaA() + " " + 
+					competicion.getCuotaGanaB() + " " + competicion.getCuotaEmpate();
 			bw.write(linea);
 			bw.newLine();
 			bw.close();
@@ -79,7 +80,8 @@ public class DAOCompeticionImp implements DAOCompeticion{
 				bw.newLine();
 			}else{
 				line = competicion.getId() + " " + competicion.getEquipoA() + " " + competicion.getEquipoB() + " " + 
-						competicion.getFechaIni() + " " + competicion.getFechaFin() + " " + competicion.getCuota();
+						competicion.getFechaIni() + " " + competicion.getFechaFin() + " " + competicion.getCuotaGanaA() + " " + 
+						competicion.getCuotaGanaB() + " " + competicion.getCuotaEmpate();
 				bw.write(line);
 				bw.newLine();
 			}
@@ -104,7 +106,8 @@ public class DAOCompeticionImp implements DAOCompeticion{
 		while(!((line = br.readLine()) == null) && !find){
 			String[] palabra = line.split(" ");
 			if(palabra[0].equalsIgnoreCase(competicion.getId())){ 
-				tao = new TAOCompeticion(palabra[0], palabra[1], palabra[2], palabra[3],palabra[4], Integer.parseInt(palabra[5]));
+				tao = new TAOCompeticion(palabra[0], palabra[1], palabra[2], palabra[3],palabra[4], Integer.parseInt(palabra[5]),
+						Integer.parseInt(palabra[6]), Integer.parseInt(palabra[7]));
 				find = true;
 			}
 		}
@@ -121,7 +124,8 @@ public class DAOCompeticionImp implements DAOCompeticion{
 		String line;
 		while(!((line = br.readLine()) == null)){
 			String[] palabra = line.split(" ");
-			listaTaos.add(new TAOCompeticion(palabra[0], palabra[1], palabra[2], palabra[3],palabra[4], Integer.parseInt(palabra[5])));  
+			listaTaos.add(new TAOCompeticion(palabra[0], palabra[1], palabra[2], palabra[3],palabra[4], Integer.parseInt(palabra[5]),
+					Integer.parseInt(palabra[6]), Integer.parseInt(palabra[7])));  
 		}
 		br.close();
 		return listaTaos;

@@ -32,63 +32,91 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 	}
 
 	@Override
-	public void Apostar(int cant_BwinCoins, String nick_usuario, String id_competicion, String tipo_competicion, int cuota) throws IOException, ApuestaDoesntExistException{
+	public void Apostar(int cant_BwinCoins, String nick_usuario, String id_competicion, String tipo_competicion, int cuota, String[] pos) {
 		// Creamos una apuesta
-		Apuesta apuesta = this.CrearApuestaUsuario(tipo_competicion);
+		Apuesta apuesta;
+		try {
+			apuesta = this.CrearApuestaUsuario(tipo_competicion);
+		
 		
 		//Buscamos la competicion que nos ha dicho el usuario
 		TAOCompeticion tao = new TAOCompeticion(id_competicion);
 		tao = this.daoCompeticion.LeerCompeticion(tao);
 		
 		//Introducimos la competicion y el usuario
-		apuesta.setId(this.generateIDApuesta().getIdApuesta());
+		apuesta.setId(this.daoApuesta.LeerUltimaApuesta().getIdApuesta() + 1);
 		apuesta.setCuotaApuesta(cuota);
 		apuesta.setCantidadApuesta(cant_BwinCoins);
 		apuesta.setUser(nick_usuario);
 		
-		//Guardamos la apuesta y decrementamos el dinero del usuario
+		
+		//Guardamos la apuesta
+		
+		if(tipo_competicion.equalsIgnoreCase("GEP")){
+			TAOApuesta taoGEP = new TAOApuesta(apuesta.getId(), nick_usuario, apuesta.getCantidadApuesta(),apuesta.getCuotaApuesta()
+					,tao.getCuotaGanaA(), tao.getCuotaGanaB(), tao.getCuotaEmpate());
+			daoApuesta.CrearApuesta(taoGEP);
+		}
+		
+		if(tipo_competicion.equalsIgnoreCase("WINFORMORE")){
+			TAOApuesta taoWFM = new TAOApuesta(apuesta.getId(), nick_usuario, apuesta.getCantidadApuesta(), apuesta.getCuotaApuesta());
+			daoApuesta.CrearApuesta(taoWFM);
+		}
+		
+		if(tipo_competicion.equalsIgnoreCase("TOURNAMENT")){
+			TAOApuesta taoTMT = new TAOApuesta(apuesta.getId(), nick_usuario, apuesta.getCantidadApuesta(), pos);
+			daoApuesta.CrearApuesta(taoTMT);
+		}
+		//decrementamos el dinero del usuario
 		TAOUsuario taoUsuario = daoUsuario.LeerUsuario(new TAOUsuario(nick_usuario));
 		taoUsuario.setDinero(taoUsuario.getDinero() - cant_BwinCoins);
 		daoUsuario.ModificarUsuario(taoUsuario);
-		
-		TAOApuesta taoApuesta = new TAOApuesta(apuesta.getId(), tipo_competicion, apuesta.getUser(), apuesta.getCantidadApuesta());
-		daoApuesta.CrearApuesta(taoApuesta);
+		} catch (ApuestaDoesntExistException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
-	public void AccederApuesta(String id_apuesta) {
-		
-		
-	}
+	public void AccederApuesta(String id_apuesta) {}
 
 	@Override
-	public void ModificarApuesta(String id_apuesta) {
-		
-		
-	}
+	public void ModificarApuesta(String id_apuesta) {}
 
 	@Override
-	public void EliminarApuesta(String id_apuesta) throws IOException {
+	public void EliminarApuesta(String id_apuesta) {
 		TAOApuesta tao = new TAOApuesta(id_apuesta);
-		this.daoApuesta.BorrarApuesta(tao);
+		try {
+			this.daoApuesta.BorrarApuesta(tao);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
-	
-	public TAOApuesta generateIDApuesta() throws IOException{
-		return this.daoApuesta.LeerUltimaApuesta();
-	}
-	
 	
 	//Operaciones sobre Competiciones
+	@SuppressWarnings("finally")
 	@Override
-	public ArrayList<TAOCompeticion> VisualizarCompeticiones() throws IOException {
-		return this.daoCompeticion.LeerTodasCompeticiones();
+	public ArrayList<TAOCompeticion> VisualizarCompeticiones(){
+		try {
+			return this.daoCompeticion.LeerTodasCompeticiones();
+		} catch (NumberFormatException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			return null;
+		}
 	}
 
 	@Override
-	public void EliminarCompeticion(String id_competicion) throws IOException {
+	public void EliminarCompeticion(String id_competicion){
 		TAOCompeticion tao = new TAOCompeticion(id_competicion);
-		this.daoCompeticion.BorrarCompeticion(tao);
+		try {
+			this.daoCompeticion.BorrarCompeticion(tao);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
