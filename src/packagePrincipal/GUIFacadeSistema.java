@@ -23,11 +23,11 @@ public class GUIFacadeSistema {
 	
 	
 	public void accionBorrarUsuario(String nombre,String pass, String correo) {
-		this.sAUsuario.BorrarUsuario(nombre, pass, correo);
+		//No se susa
 	}
 
 	public void accionLogin(String nombre, String pass) {		
-		this.sAUsuario.Login(nombre, pass);
+		this.cp.
 	}
 	
 	public void accionCerrarSesion(String nombre, String pass) {
