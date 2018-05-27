@@ -20,19 +20,23 @@ public class SAUsuarioImp implements SAUsuario {
 
 
 	@Override
-	public void Login(String nick, String pass) {
+	public boolean Login(String nick, String pass) {
 		TAOUsuario taoNick = new TAOUsuario(nick, "", pass, 0, "");
 		TAOUsuario taoUsuario;
+		boolean login = false;
 		try {
 			taoUsuario = daoUsuario.LeerUsuario(taoNick);
-			taoUsuario.SetValidacion(true);
-			if(taoUsuario != null){
-				daoUsuario.ModificarUsuario(taoUsuario);
-			}	
+			if(!taoUsuario.GetNombre().isEmpty()){
+				taoUsuario.SetValidacion(true);
+				if(taoUsuario != null){
+					daoUsuario.ModificarUsuario(taoUsuario);
+				}	
+				login = true;
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return login;
 	}
 
 

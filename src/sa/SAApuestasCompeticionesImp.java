@@ -22,6 +22,9 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 	
 	public SAApuestasCompeticionesImp(){
 		this.factory_apuesta = new FactoriaApuesta();
+		this.daoCompeticion = new DAOCompeticionImp();
+		this.daoUsuario = new DAOUsuarioImp();
+		this.daoApuesta = new DAOApostarImp();
 	}
 	
 	
@@ -97,15 +100,19 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 	//Operaciones sobre Competiciones
 	@SuppressWarnings("finally")
 	@Override
-	public ArrayList<TAOCompeticion> VisualizarCompeticiones(){
+	public String[] VisualizarCompeticiones(){
+		String[] competiciones = new String[20];
 		try {
-			return this.daoCompeticion.LeerTodasCompeticiones();
+			ArrayList<TAOCompeticion> lista = this.daoCompeticion.LeerTodasCompeticiones();
+			for(int i = 0; i < lista.size(); i++){
+				competiciones[i] = "\nId: " + lista.get(i).getId() + "  Equipo A: " + lista.get(i).getEquipoA() + "  Equipo B: " + lista.get(i).getEquipoB() 
+						+ "\n Gana A: " + lista.get(i).getCuotaGanaA() + "\n Gana B: " + lista.get(i).getCuotaGanaB() + "\n Empate: " + lista.get(i).getCuotaEmpate();
+			}
 		} catch (NumberFormatException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			return null;
 		}
+		return competiciones;
 	}
 
 	@Override
