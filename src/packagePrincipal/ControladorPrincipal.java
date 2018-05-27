@@ -36,27 +36,30 @@ public class ControladorPrincipal {
 		}
 		return ok;
 	}
-	public void CerrarSesion(String nick) {
-		this.saUsuario.CerrarSesion(nick);
+	public void CerrarSesion() {
+		this.saUsuario.CerrarSesion(this.nick);
 	}
 
-	public void CambiarContrasena(String nick, String oldPass, String newPass) {
-		this.saUsuario.CambiarContrasena(nick, oldPass, newPass);
+	public void CambiarContrasena(String oldPass, String newPass) {
+		this.saUsuario.CambiarContrasena(this.nick, oldPass, newPass);
 	}
 	
 	public String[] visualizarCompeticiones(){
 		return this.saApuComp.VisualizarCompeticiones();
 	}
-	public void Apostar(int cant, String nick, String id, String tipo, int cuota, String[] pos){
-		this.saApuComp.Apostar(cant, nick, id, tipo, cuota, pos);
+	public void Apostar(int cant, String id, String tipo, int cuota, String[] pos){
+		this.saApuComp.Apostar(cant, this.nick, id, tipo, cuota, pos);
 	}
 
 	public void premium() {
-		this.saUsuario.HacersePremium(id);
+		this.saUsuario.HacersePremium(this.nick);
 	}
 
-	public void configurarDinero() {
-		this.saUsuario.ConfigurarDinero(id, cantidad, accion);
+	public void configurarDinero(int cantidad, String accion) {
+		String acc;
+		if(accion.equals("Sacar Dinero")) acc = "SacarDinero";
+		else acc = "MeterDinero";
+		this.saUsuario.ConfigurarDinero(this.nick, cantidad, acc);
 	}
 
 }

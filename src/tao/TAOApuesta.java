@@ -107,4 +107,5 @@ public class TAOApuesta {
 	public void setTipo(String tipo){
 		this.tipo = tipo;
 	}
+	
 }

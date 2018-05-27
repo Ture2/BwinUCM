@@ -47,7 +47,9 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 		tao = this.daoCompeticion.LeerCompeticion(tao);
 		
 		//Introducimos la competicion y el usuario
-		apuesta.setId(this.daoApuesta.LeerUltimaApuesta().getIdApuesta() + 1);
+		String id = this.daoApuesta.LeerUltimaApuesta().getIdApuesta();
+		int idParser = Integer.parseInt(id) + 1;
+		apuesta.setId("" + idParser);
 		apuesta.setCuotaApuesta(cuota);
 		apuesta.setCantidadApuesta(cant_BwinCoins);
 		apuesta.setUser(nick_usuario);
@@ -56,7 +58,7 @@ public class SAApuestasCompeticionesImp implements SAApuestasCompeticiones{
 		//Guardamos la apuesta
 		
 		if(tipo_competicion.equalsIgnoreCase("GEP")){
-			TAOApuesta taoGEP = new TAOApuesta(apuesta.getId(), nick_usuario, apuesta.getCantidadApuesta(),apuesta.getCuotaApuesta()
+			TAOApuesta taoGEP = new TAOApuesta(apuesta.getId(), nick_usuario, apuesta.getCantidadApuesta(), apuesta.getCuotaApuesta()
 					,tao.getCuotaGanaA(), tao.getCuotaGanaB(), tao.getCuotaEmpate());
 			daoApuesta.CrearApuesta(taoGEP);
 		}

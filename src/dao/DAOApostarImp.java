@@ -25,8 +25,8 @@ public class DAOApostarImp implements DAOApostar {
 		if(this.LeerApuesta(apuesta) == null){
 			FileWriter fw = new FileWriter("Apuestas.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			String linea = apuesta.getCantidadApuesta() + " " + apuesta.getTipo() + " " + apuesta.getUsuario() + " " + 
-					apuesta.getIdApuesta();
+			String linea = apuesta.getIdApuesta() + " " + apuesta.getTipo() + " " + apuesta.getUsuario() + " " + 
+					apuesta.getCantidadApuesta();
 			bw.write(linea);
 			bw.newLine();
 			bw.close();

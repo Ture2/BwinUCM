@@ -82,18 +82,20 @@ public class GUIFacadeSistema {
 				}
 				
 				this.selecionarApuesta();
-				this.introducirCantidadApuesta();
+				this.introducirCantidad();
 				this.selecionarTipoApuesta();
 				this.sumbitApostar();
 			}else if(line.equalsIgnoreCase("2")){
 				this.controlador.premium();
-				
-				
-				
 			}else if(line.equalsIgnoreCase("3")){
-				this.controlador.configurarDinero();
-				
-				
+				System.out.println("¿Que accion desea realizar?  Sacar Dinero  |   Meter Dinero");
+				line = in.nextLine();
+				while(!line.equalsIgnoreCase("Sacar Dinero") && !line.equalsIgnoreCase("Meter Dinero")){
+					System.out.println("Error, introduzca una accion valida\n ¿Que accion desea realizar?  Sacar Dinero  |   Meter Dinero");
+					line = in.nextLine();
+				}
+				this.introducirCantidad();
+				this.controlador.configurarDinero(cantidad, line);
 			}else if(line.equalsIgnoreCase("4")){
 				exit = true;
 			}
@@ -138,7 +140,7 @@ public class GUIFacadeSistema {
 	}
 	
 	
-	public void introducirCantidadApuesta(){
+	public void introducirCantidad(){
 		System.out.println("Introduzca la cantidad\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
@@ -160,7 +162,8 @@ public class GUIFacadeSistema {
 	}
 	public void sumbitApostar(){
 		String[] pos = null;  
-		this.controlador.Apostar(this.cantidad, this.nick, this.idApuesta, this.tipoApuesta, 2, pos);
+		this.controlador.Apostar(this.cantidad, this.idApuesta, this.tipoApuesta, 2, pos);
 	}
+	
 	
 }

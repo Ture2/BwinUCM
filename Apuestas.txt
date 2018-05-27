@@ -1,1 +1,1 @@
-1 Ture 20 2 2 4 3 
+1000 GEP Ture 20 null GEP usuario 409

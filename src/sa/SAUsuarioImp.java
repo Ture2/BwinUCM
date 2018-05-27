@@ -108,17 +108,16 @@ public class SAUsuarioImp implements SAUsuario {
 		try {
 			taoNuevo = daoUsuario.LeerUsuario(tao);
 			if(accion.equalsIgnoreCase("SacarDinero")){
-				taoNuevo.setDinero(taoNuevo.getDinero() - cantidad);
+				if((taoNuevo.getDinero() - cantidad) > 0)taoNuevo.setDinero(taoNuevo.getDinero() - cantidad);
+				else return false;
 			}else if(accion.equalsIgnoreCase("MeterDinero")){
 				taoNuevo.setDinero(taoNuevo.getDinero() + cantidad);
 			}
 			daoUsuario.ModificarUsuario(taoNuevo);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return false;
+		return true;
 	}
 
 	
