@@ -50,4 +50,13 @@ public class ControladorPrincipal {
 	public void Apostar(int cant, String nick, String id, String tipo, int cuota, String[] pos){
 		this.saApuComp.Apostar(cant, nick, id, tipo, cuota, pos);
 	}
+
+	public void premium() {
+		this.saUsuario.HacersePremium(id);
+	}
+
+	public void configurarDinero() {
+		this.saUsuario.ConfigurarDinero(id, cantidad, accion);
+	}
+
 }

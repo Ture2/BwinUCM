@@ -132,6 +132,7 @@ public class DAOApostarImp implements DAOApostar {
 		while(line != null){
 			String[] palabra = line.split(" ");
 			tao.setIdApuesta(palabra[0]);
+			line = br.readLine();
 		}
 		br.close();
 		return tao;

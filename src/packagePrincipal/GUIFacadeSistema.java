@@ -41,24 +41,21 @@ public class GUIFacadeSistema {
 			line = in.nextLine();
 			
 			if(line.equalsIgnoreCase("1")){
-				System.out.println("Introduzca el nick\n");
 				this.introducirNick();
-				System.out.println("Introduzca la contraseña\n");
 				this.escribirContraseña();
 				this.sumbitLogin();
-				
+				while(!this.sumbitLogin()){
+					System.out.println("Error al iniciar sesion");
+					this.introducirNick();
+					this.escribirContraseña();
+				}
 				exit = interfazUsuario();
 			}else if(line.equalsIgnoreCase("2")){
-				System.out.println("Introduzca el nombre\n");
 				this.introducirNombre();
-				System.out.println("Introduzca el nick\n");
 				this.introducirNick();
-				System.out.println("Introduzca el mail\n");
 				this.introducirCorreo();
-				System.out.println("Introduzca la contraseña\n");
 				this.escribirContraseña();
 				this.sumbitRegistrar();
-				
 				exit = interfazUsuario();
 			}else if(line.equalsIgnoreCase("3")) exit = true;
 		}
@@ -83,54 +80,57 @@ public class GUIFacadeSistema {
 				for(int i = 0; i < competiciones.length; i++){
 					if(competiciones[i] != null) System.out.println(competiciones[i]);
 				}
-				System.out.println("Introduzca el id\n");
+				
 				this.selecionarApuesta();
-				System.out.println("Introduzca la cantidad\n");
 				this.introducirCantidadApuesta();
-				System.out.println("Seleccione el tipo de apuesta: GEP  | Ganar por mas  | Torneo\n");
 				this.selecionarTipoApuesta();
 				this.sumbitApostar();
 			}else if(line.equalsIgnoreCase("2")){
-				System.out.println("Introduzca el nombre\n");
-				this.introducirNombre();
-				System.out.println("Introduzca el nick\n");
-				this.introducirNick();
-				System.out.println("Introduzca el mail\n");
-				this.introducirCorreo();
-				System.out.println("Introduzca la contraseña\n");
-				this.escribirContraseña();
-				this.sumbitRegistrar();
-			}else if(line.equalsIgnoreCase("3")) exit = true;
+				this.controlador.premium();
+				
+				
+				
+			}else if(line.equalsIgnoreCase("3")){
+				this.controlador.configurarDinero();
+				
+				
+			}else if(line.equalsIgnoreCase("4")){
+				exit = true;
+			}
 		}
 		return exit;
 	}
 	
 	
 	public void introducirNombre(){
+		System.out.println("Introduzca el nombre\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.nombre = palabra[0];
 	}
 	
 	public void introducirNick(){
+		System.out.println("Introduzca el nick\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.nick = palabra[0];
 	}
 
 	public void introducirCorreo(){
+		System.out.println("Introduzca el mail\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.correo = palabra[0];
 	}
 	public void escribirContraseña(){
+		System.out.println("Introduzca la contraseña\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.pass = palabra[0];
 	}
 	
-	public void sumbitLogin(){
-		this.controlador.IniciarSesion(this.nick, this.pass);
+	public boolean sumbitLogin(){
+		return this.controlador.IniciarSesion(this.nick, this.pass);
 	}
 
 	public void sumbitRegistrar(){
@@ -139,18 +139,21 @@ public class GUIFacadeSistema {
 	
 	
 	public void introducirCantidadApuesta(){
+		System.out.println("Introduzca la cantidad\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.cantidad = Integer.parseInt(palabra[0]);
 	}
 	
 	public void selecionarApuesta(){
+		System.out.println("Introduzca el id\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.idApuesta = palabra[0];
 	}
 	
 	public void selecionarTipoApuesta(){
+		System.out.println("Seleccione el tipo de apuesta: GEP  | WINFORMORE  | TOURNAMENT\n");
 		String line = in.nextLine();
 		String[] palabra = line.split(" ");
 		this.tipoApuesta = palabra[0];

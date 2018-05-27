@@ -26,7 +26,7 @@ public class SAUsuarioImp implements SAUsuario {
 		boolean login = false;
 		try {
 			taoUsuario = daoUsuario.LeerUsuario(taoNick);
-			if(!taoUsuario.GetNombre().isEmpty()){
+			if(taoUsuario != null){
 				taoUsuario.SetValidacion(true);
 				if(taoUsuario != null){
 					daoUsuario.ModificarUsuario(taoUsuario);
@@ -55,10 +55,9 @@ public class SAUsuarioImp implements SAUsuario {
 	}
 
 	public void CambiarContrasena(String nick, String oldPass, String newPass){
-		TAOUsuario taoNick = new TAOUsuario(nick, "", "", 0, "");
-		TAOUsuario taoUsuario;
+		TAOUsuario taoUsuario = new TAOUsuario(nick, "", "", 0, "");;
 		try {
-			taoUsuario = daoUsuario.LeerUsuario(taoNick);
+			taoUsuario = daoUsuario.LeerUsuario(taoUsuario);
 			if(taoUsuario.GetPass().equalsIgnoreCase(oldPass)){
 				taoUsuario.SetPass(newPass);
 				daoUsuario.ModificarUsuario(taoUsuario);
